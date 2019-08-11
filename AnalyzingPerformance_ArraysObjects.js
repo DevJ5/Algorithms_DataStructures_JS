@@ -4,6 +4,7 @@
  Searching - meaning is a certain value inside an object - is linear time : O(n)
 
  NB. There is no order in an object as there is in an array.
+ NB2. The space complexity of an object is O(n), where n is the number of keys
  */
 
 var person = { name: "Bert", age: 55 };
