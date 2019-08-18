@@ -87,3 +87,61 @@ function sumZero(arr) {
         else j--;
     }
 }
+
+
+// Input is a sorted array of ints (can be negative) and an average.
+// Output is true if there is a pair that has the target average.
+// [1,2,3], 2.5 -> true
+// sum van een pair = avg * 2
+// Als avg 8 is dan moet sum 16 zijn. -> 1 + 15 of 2 + 14
+function averagePair(arr, avg) {
+    let start = 0;
+    let end = arr.length - 1;
+
+    while (start < end) {
+        let localAvg = (arr[start] + arr[end]) / 2;
+        if (localAvg = avg) return true;
+        if (localAvg < avg) start++;
+        else end--;
+    }
+
+    return false;
+}
+
+// Inputs are two strings
+// Problem: Are the characters in the first string a subsequence of the characters in the second string.
+// Output is true or false.
+
+function isSubsequence(str1, str2) {
+    if (str1.length > str2.length) return false;
+    if (str1.length === str2.length && str1 !== str2) return false;
+
+    for (let i = 0, j = 0; j < str2.length; j++) {
+        if (str1[i] === str2[j]) i++;
+        if (i === str1.length) return true;
+
+    }
+
+    return false;
+
+}
+
+console.log(isSubsequence('sing', 'sting')); // true
+
+function longestUniqueCharacters(str) {
+    let longest = 0;
+    let count = 0;
+    for (let i = 0; i < str.length; i++) {
+        if (arr[i] !== arr[i + 1]) {
+            count++;
+        } else {
+            longest = count;
+            count = 0;
+        }
+    }
+    return longest;
+}
+
+console.log(longestUniqueCharacters("hellothere"));
+
+
