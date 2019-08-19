@@ -128,20 +128,59 @@ function isSubsequence(str1, str2) {
 
 console.log(isSubsequence('sing', 'sting')); // true
 
-function longestUniqueCharacters(str) {
-    let longest = 0;
-    let count = 0;
-    for (let i = 0; i < str.length; i++) {
-        if (arr[i] !== arr[i + 1]) {
-            count++;
-        } else {
-            longest = count;
-            count = 0;
-        }
+function maxSubarraySum(arr, n) {
+    if (n > arr.length) return null;
+
+    let maxSum = 0;
+    for (let i = 0; i < n; i++) {
+        maxSum += arr[i];
     }
-    return longest;
+
+    let tempSum = maxSum;
+    for (let i = 0; i < arr.length - n; i++) {
+        tempSum -= arr[i];
+        tempSum += arr[n + i];
+
+        if (tempSum > maxSum) maxSum = tempSum;
+    }
+
+    return maxSum;
+
 }
 
-console.log(longestUniqueCharacters("hellothere"));
+console.log(maxSubarraySum([100, 200, 300, 400], 2));
+
+function minSubArrayLen(arr, n) {
+    let total = 0;
+    let start = 0;
+    let end = 0;
+    let minLen = Infinity;
+
+    while (start < arr.length) {
+        if (total < n && end < arr.length) {
+            total += arr[end];
+            end++;
+        }
+        else if (total === n) {
+            minLen = Math.min(minLen, end - start);
+            total -= arr[start];
+            start++;
+        }
+        else if (total > n) {
+            total -= arr[start];
+            start++;
+        }
+        else {
+            break;
+        }
+    }
+
+    return minLen;
+}
+
+console.log("min subarray", minSubArrayLen([2, 2, 2, 2, 2, 2], 7)); // 2
+
+
+
 
 
