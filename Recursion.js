@@ -1,18 +1,11 @@
 // A function that calls itself
 // Iteration vs recursion
 // Push on the call stack and pop off the call stack
-// Helper method recursion
+// Helper method recursion vs pure recursion
 
-function collectOddValues(arr) {
-    let odd = [];
+function isPalindrome(str) {
 
-    function helper(input) {
-        if (input.length === 0) return;
-        if (input[0] % 2 === 1) odd.push(input[0]);
-        helper(input.slice(1));
-    }
-    helper(arr);
-    return odd;
+    return str === isPalindrome(str.slice(1)) + str[0];
 }
 
-console.log(collectOddValues([1, 2, 3, 4, 5, 6]));
+console.log(isPalindrome("hi"));
