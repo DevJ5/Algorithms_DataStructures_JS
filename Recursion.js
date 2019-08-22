@@ -4,7 +4,7 @@
 // Helper method recursion vs pure recursion
 
 function isPalindrome(str) {
-
+    
     return str === isPalindrome(str.slice(1)) + str[0];
 }
 
