@@ -80,4 +80,3 @@ class DoublyLinkedList {
 let doubly = new DoublyLinkedList();
 console.log(doubly.push(13));
 console.log(doubly.pop());
-console.log(doubly);
