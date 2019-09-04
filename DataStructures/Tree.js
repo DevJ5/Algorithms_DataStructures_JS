@@ -8,6 +8,7 @@
 class Node {
     constructor(val) {
         this.val = val;
+        this.count = 1;
         this.left = null;
         this.right = null;
     }
@@ -16,18 +17,22 @@ class Node {
 class BinarySearchTree {
     constructor() {
         this.root = null;
-        this.numberOfNodes = 0;
     }
 
     insert(val) {
         let newNode = new Node(val);
-        if (this.numberOfNodes === 0) {
+        if (this.root === null) {
             this.root = newNode;
+            return this;
         } else {
             let currentNode = this.root;
             let inserted = false;
 
             while (!inserted) {
+                if (newNode.val === currentNode.val) {
+                    currentNode.count++;
+                    inserted = true;
+                }
                 if (newNode.val < currentNode.val) {
                     if (currentNode.left === null) {
                         currentNode.left = newNode;
@@ -43,9 +48,19 @@ class BinarySearchTree {
                     else currentNode = currentNode.right;
                 }
             }
+
+            return this;
         }
+    }
+
+    search(val) {
+
     }
 }
 
 let BinarySearchTree = new BinarySearchTree();
+
+//        10
+//    5       13
+//  3   6   11   15
 
