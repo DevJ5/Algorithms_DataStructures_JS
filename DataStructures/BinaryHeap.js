@@ -5,17 +5,17 @@ class MaxBinaryHeap {
 
     insert(val) {
         this.values.push(val);
+        let index = this.values.length - 1;
         let nodeValue = val;
 
-        while (nodeValue > this.values[getParentIndex(nodeValue)]) {
-            swap(this.values.length - 1, getParentIndex(nodeValue));
+        while (nodeValue > this.values[getParentIndex(index)]) {
+            swap(index, getParentIndex(index));
             nodeValue = this.values[getParentIndex(nodeValue)];
         }
     }
 
-    getParentIndex(val) {
-        const lastIndex = this.values.length - 1;
-        const parent = (lastIndex - 1) / 2;
+    getParentIndex(index) {
+        const parent = (index - 1) / 2;
         return parent;
     }
 
