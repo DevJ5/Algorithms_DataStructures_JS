@@ -31,6 +31,13 @@ class MaxBinaryHeap {
         this.values[index] = this.values[parentIndex];
         this.values[parentIndex] = temp;
     }
+
+    extractMax() {
+        this.swap(0, this.values.length - 1);
+        const removedNode = this.values.pop();
+
+
+    }
 }
 
 const mbh = new MaxBinaryHeap();
