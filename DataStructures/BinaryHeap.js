@@ -32,11 +32,49 @@ class MaxBinaryHeap {
         this.values[parentIndex] = temp;
     }
 
+    // Removing from the end, aka extractMax:
     extractMax() {
-        this.swap(0, this.values.length - 1);
-        const removedNode = this.values.pop();
+        const max = this.values[0];
+        const end = this.values.pop();
+        this.values[0] = end;
 
+        // trickle down
+        this.sinkDown();
 
+        return max;
+    }
+
+    sinkDown() {
+        let idx = 0;
+        const length = this.values.length;
+        const element = this.values[0];
+
+        while (true) {
+            const leftChildIndex = 2 * idx + 1;
+            const rightChildIndex = 2 * idx + 2;
+
+            let leftChild, rightChild;
+            let swap = null;
+
+            if (letfChildIndex < length) {
+                leftChild = this.values[leftChildIndex];
+                if (leftChild > element) {
+                    swap = leftChildIndex;
+                }
+            }
+
+            if (rightChildIndex < length) {
+                rightChild = this.values[rightChildIndex];
+                if (
+                    (swap === null && rightChild > element) ||
+                    (swap !== null && rightChild > leftChild)
+                ) {
+
+                }
+            }
+
+            if (swap === null) break;
+        }
     }
 }
 
