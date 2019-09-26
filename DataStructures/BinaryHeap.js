@@ -26,20 +26,21 @@ class MaxBinaryHeap {
         return parent;
     }
 
-    swap(index, parentIndex) {
-        let temp = this.values[index];
-        this.values[index] = this.values[parentIndex];
-        this.values[parentIndex] = temp;
+    swap(index1, index2) {
+        let temp = this.values[index1];
+        this.values[index1] = this.values[index2];
+        this.values[index2] = temp;
     }
 
     // Removing from the end, aka extractMax:
     extractMax() {
         const max = this.values[0];
         const end = this.values.pop();
-        this.values[0] = end;
-
-        // trickle down
-        this.sinkDown();
+        if (this.length !== 0) {
+            this.values[0] = end;
+            // trickle down
+            this.sinkDown();
+        }
 
         return max;
     }
@@ -69,11 +70,13 @@ class MaxBinaryHeap {
                     (swap === null && rightChild > element) ||
                     (swap !== null && rightChild > leftChild)
                 ) {
-
+                    swap = rightChildIndex;
                 }
             }
 
             if (swap === null) break;
+            this.swap(idx, swap);
+            idx = swap;
         }
     }
 }
