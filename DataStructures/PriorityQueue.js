@@ -84,4 +84,5 @@ let pQ = new PriorityQueue();
 pQ.enqueue(new Node("milk", 5));
 pQ.enqueue(new Node("butter", 3));
 pQ.enqueue(new Node("cheese", 2));
+pQ.dequeue();
 console.log(pQ.values);
