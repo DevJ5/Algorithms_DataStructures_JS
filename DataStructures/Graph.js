@@ -34,4 +34,7 @@ class Graph {
             this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(vertex => vertex !== vertex1);
         }
     }
+    removeVertex(vertex) {
+
+    }
 }
