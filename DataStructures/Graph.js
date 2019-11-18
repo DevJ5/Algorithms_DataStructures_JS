@@ -30,11 +30,15 @@ class Graph {
     }
     removeEdge(vertex1, vertex2) {
         if (this.adjacencyList[vertex1] && this.adjacencyList[vertex2]) {
-            this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(vertex => vertex !== vertex2);
-            this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(vertex => vertex !== vertex1);
+            this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(v => v !== vertex2);
+            this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(v => v !== vertex1);
         }
     }
     removeVertex(vertex) {
-
+        for (let i = 0; i < this.adjacencyList[vertex].length; i++) {
+            const connectedVertex = this.adjacencyList[vertex][i];
+            this.adjacencyList[connectedVertex] = this.adjacencyList[connectedVertex].filter(v => v !== vertex);
+        }
+        delete this.adjacencyList[vertex];
     }
 }
