@@ -61,6 +61,24 @@ class Graph {
         helper(vertex);
         return result;
     }
+    depthFirstIterative(vertex) {
+        let s = [];
+        const visitedVertexes = {};
+        const result = [];
+        s.push(vertex);
+        while (s.length) {
+            vertex = s.pop();
+            if (!visitedVertexes[vertex]) {
+                visitedVertexes[vertex] = true;
+                result.push(vertex);
+                for (let i = this.adjacencyList[vertex].length - 1; i >= 0; i--) {
+                    const element = this.adjacencyList[vertex][i];
+                    s.push(element);
+                }
+            }
+        }
+        return result;
+    }
 }
 
 const graph = new Graph();
@@ -82,4 +100,5 @@ graph.addEdge("E", "F");
 // DFS Recursive:
 
 console.log(graph.depthFirstRecursive("A"));
+console.log(graph.depthFirstIterative("A"));
 
