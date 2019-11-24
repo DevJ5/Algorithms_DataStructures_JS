@@ -62,21 +62,42 @@ class Graph {
         return result;
     }
     depthFirstIterative(vertex) {
-        let s = [];
+        let stack = [];
         const visitedVertexes = {};
         const result = [];
-        s.push(vertex);
-        while (s.length) {
-            vertex = s.pop();
+
+        stack.push(vertex);
+        while (stack.length) {
+            vertex = stack.pop();
             if (!visitedVertexes[vertex]) {
                 visitedVertexes[vertex] = true;
                 result.push(vertex);
                 for (let i = this.adjacencyList[vertex].length - 1; i >= 0; i--) {
                     const element = this.adjacencyList[vertex][i];
-                    s.push(element);
+                    stack.push(element);
                 }
             }
         }
+        return result;
+    }
+    breadthFirst(vertex) {
+        const queue = [];
+        const visitedVertexes = {};
+        const result = [];
+
+        queue.push(vertex);
+
+        while (queue.length) {
+            vertex = queue.shift();
+            if (!visitedVertexes[vertex]) {
+                visitedVertexes[vertex] = true;
+                result.push(vertex);
+                this.adjacencyList[vertex].forEach(v => {
+                    if (!visitedVertexes[v]) queue.push(v);
+                });
+            }
+        }
+
         return result;
     }
 }
@@ -101,4 +122,5 @@ graph.addEdge("E", "F");
 
 console.log(graph.depthFirstRecursive("A"));
 console.log(graph.depthFirstIterative("A"));
+console.log(graph.breadthFirst("A"));
 
